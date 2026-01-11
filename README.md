@@ -75,5 +75,12 @@ MIT License - Feel free to use this for learning!
 - Claude for guidance and code assistance
 
 ## ✨Results
+
+- Epoch 1/5 - Train: 89.29% | Test: 93.04%
+- Epoch 2/5 - Train: 94.91% | Test: 95.20%
+- Epoch 3/5 - Train: 96.03% | Test: 95.89%
+- Epoch 4/5 - Train: 96.54% | Test: 96.66%
+- Epoch 5/5 - Train: 97.04% | Test: 96.59%
+- ✨ Training complete! Final accuracy: 96.59%
 <img width="1200" height="600" alt="image" src="https://github.com/user-attachments/assets/38aaa940-5ac0-4b25-99a9-80adbf0a2651" />
 
