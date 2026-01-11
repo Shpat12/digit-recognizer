@@ -72,3 +72,4 @@ MIT License - Feel free to use this for learning!
 
 - MNIST dataset by Yann LeCun
 - PyTorch documentation and tutorials
+- Claude for guidance and code assistance
