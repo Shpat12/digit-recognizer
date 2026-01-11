@@ -4,8 +4,8 @@ from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
 
-# Step 1: Prepare the data
-print("📁 Loading MNIST dataset...")
+# Preparing the data
+print("📁 Loading dataset...")
 transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize((0.5,), (0.5,))
@@ -13,20 +13,18 @@ transform = transforms.Compose([
 
 train_data = datasets.MNIST('./data', train=True, download=True, transform=transform)
 test_data = datasets.MNIST('./data', train=False, download=True, transform=transform)
-
 train_loader = DataLoader(train_data, batch_size=32, shuffle=True)
 test_loader = DataLoader(test_data, batch_size=32, shuffle=False)
 
 print(f"✅ Loaded {len(train_data)} training images and {len(test_data)} test images\n")
 
-# Step 2: Build a simple neural network
+# Build the neural network
 class SimpleDigitReader(nn.Module):
     def __init__(self):
         super().__init__()
-        # Flatten 28x28 image to 784 pixels
+        # Flatten image
         self.flatten = nn.Flatten()
         
-        # Simple 3-layer network
         self.network = nn.Sequential(
             nn.Linear(28*28, 128),  # Input layer: 784 -> 128
             nn.ReLU(),               # Activation
@@ -39,7 +37,7 @@ class SimpleDigitReader(nn.Module):
         x = self.flatten(x)
         return self.network(x)
 
-# Step 3: Create the model
+# Create the model
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 print(f"💻 Using: {device.upper()}\n")
 
@@ -71,7 +69,7 @@ def train_one_epoch():
     
     return 100 * correct / total
 
-# Step 5: Test the model
+# Test the model
 def test_model():
     model.eval()
     correct = 0
@@ -86,7 +84,7 @@ def test_model():
     
     return 100 * correct / total
 
-# Step 6: Train for a few epochs
+# Train
 print("🚀 Training started...\n")
 epochs = 5
 
@@ -97,7 +95,7 @@ for epoch in range(1, epochs + 1):
 
 print(f"\n✨ Training complete! Final accuracy: {test_acc:.2f}%")
 
-# Step 7: Show some predictions
+# Show predictions
 def show_predictions():
     model.eval()
     images, labels = next(iter(test_loader))
@@ -124,7 +122,7 @@ def show_predictions():
 
 show_predictions()
 
-# Step 8: Save your model
+# Save your model
 torch.save(model.state_dict(), 'digit_reader.pth')
 print("💾 Model saved to 'digit_reader.pth'")
 
